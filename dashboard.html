@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SendIt Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+/* Add your CSS styles here */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 1.3s;
+}
+
+.container:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: width 0.3s;
+    border-right: 1px solid #555; /* Thin border between avatar button and other options */
+}
+
+.container:hover .sidebar {
+    width: 250px;
+}
+
+.sidebar-avatar {
+    margin-bottom: 20px;
+    width: 240px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.sidebar-avatar:hover {
+    transform: scale(1.1);
+}
+
+.sidebar-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.sidebar li:hover {
+    background-color: #444;
+}
+
+.sidebar button {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: left;
+    cursor: absolute;
+    transition: background-color 1.3s;
+}
+
+.sidebar button:hover {
+    background-color: #555;
+}
+
+.sidebar input[type="file"] {
+    display: none;
+}
+
+.sidebar label {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar label:hover {
+    background-color: #555;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.content h1 {
+    margin-top: 0;
+}
+
+/* Header Style */
+.header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SendIt Dashboard</h1>
+    </div>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-avatar">
+                <img src="default-avatar.jpg" alt="Avatar">
+            </div>
+            <input type="file" id="avatar" accept="image/*">
+            <label for="avatar">Upload Avatar</label>
+            <ul>
+                <li><button onclick="loadContent('compose-email')">Compose Email</button></li>
+                <li><button onclick="loadContent('vendor-list')">Vendor List</button></li>
+                <li><button onclick="loadContent('database')">Database</button></li>
+                <li><button onclick="loadContent('update-resume')">Update Resume</button></li>
+                <li><button onclick="loadContent('search-resume')">Search Resume</button></li>
+                <li><button onclick="loadContent('upload-resume')">Upload Resume</button></li>
+                <li><button onclick="loadContent('user-account')">User Account</button></li>
+                <li><button onclick="loadContent('logout')">Logout</button></li>
+            </ul>
+        </div>
+
+        <!-- Main content -->
+        <div class="content" id="main-content">
+            <!-- Content from individual sections will be loaded here dynamically -->
+        </div>
+    </div>
+
+    <!-- Include JavaScript here -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load default content when the page loads
+            loadContent("compose-email");
+
+            // Handle sidebar navigation
+            const sidebarButtons = document.querySelectorAll(".sidebar button");
+            sidebarButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const sectionId = this.textContent.toLowerCase().replace(" ", "-");
+                    loadContent(sectionId);
+                });
+            });
+
+            // Handle avatar upload
+            const avatarInput = document.getElementById("avatar");
+            avatarInput.addEventListener("change", function () {
+                // Handle the uploaded file here (e.g., display the image).
+                const file = avatarInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        // You can display the uploaded image here.
+                        const imageUrl = e.target.result;
+                        document.querySelector(".sidebar-avatar img").src = imageUrl;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+        function loadContent(sectionId) {
+            // Simulate loading content from a server
+            const contentContainer = document.getElementById("main-content");
+            contentContainer.innerHTML = `<h1>Loading ${sectionId}...</h1>`;
+
+            // You would typically make an AJAX request here to load the actual content
+            // and replace the "Loading" message with the content from the server.
+        }
+    </script>
+</body>
+</html>
