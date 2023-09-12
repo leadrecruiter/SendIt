@@ -48,7 +48,7 @@
             margin-bottom: 20px;
             width: 100px;
             height: 100px;
-            border-radius: 50%;
+            border-radius: 60%;
             overflow: hidden;
             transition: transform 0.3s;
         }
@@ -81,7 +81,7 @@
         }
 
         .sidebar button {
-            background-color: transparent;
+            background-color: #1E90FF; /* Steel Blue */
             border: none;
             color: #fff;
             padding: 10px 20px;
@@ -94,32 +94,42 @@
         }
 
         .sidebar button:hover {
-            background-color: #555;
+            background-color: #4682B4; /* Steel Blue (Lighter) */
         }
 
         .sidebar button i {
             margin-right: 10px;
+            font-size: 18px;
         }
 
         .sidebar input[type="file"] {
             display: none;
         }
 
-        .sidebar label {
-            background-color: transparent;
-            border: none;
-            color: #fff;
-            padding: 10px 20px;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-        }
+ /* Base styles for the label */
+.sidebar label {
+    background-color: #1E90FF; /* Steel Blue */
+    color: #fff;
+    padding: 20px 0; /* Adjusted padding for better centering */
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the text horizontally */
+    border-radius: 5px; /* Add some rounded corners */
+    transition: background-color 0.3s ease; /* Reduced transition time */
+    font-weight: bold; /* Make the text bold for better readability */
+}
 
+/* Hover effect for the label */
+.sidebar label:hover {
+    background-color: #007acc; /* Darker Steel Blue on hover */
+    transform: scale(1.05); /* Slight scale-up effect on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+}
         .sidebar label:hover {
-            background-color: #555;
+            background-color: #4682B4; /* Steel Blue (Lighter) */
         }
 
         .content {
@@ -134,7 +144,7 @@
 
         /* Header Style */
         .header {
-            background-color: #333;
+            background-color: #1E90FF; /* Steel Blue */
             color: #fff;
             text-align: center;
             padding: 10px;
@@ -152,7 +162,8 @@
             <img src="default-avatar.jpg" alt="Avatar">
         </div>
         <input type="file" id="avatar" accept="image/*">
-        <label for="avatar">Upload Avatar</label>
+        <label for="avatar">Upload Avatar</label><br>
+<p>---------------------------------<p>
         <ul>
             <li><button onclick="loadContent('compose-email')"><i class="fas fa-envelope"></i> Compose Email</button></li>
             <li><button onclick="loadContent('vendor-list')"><i class="fas fa-list"></i> Vendor List</button></li>
@@ -161,7 +172,8 @@
             <li><button onclick="loadContent('search-resume')"><i class="fas fa-search"></i> Search Resume</button></li>
             <li><button onclick="loadContent('upload-resume')"><i class="fas fa-upload"></i> Upload Resume</button></li>
             <li><button onclick="loadContent('user-account')"><i class="fas fa-user"></i> User Account</button></li>
-            <li><button onclick="loadContent('logout')"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+            <p>---------------------------------<p>
+            <br><li><button onclick="loadContent('logout')"><i class="fas fa-sign-out-alt"></i> Logout</button></li></br>
         </ul>
     </div>
 
